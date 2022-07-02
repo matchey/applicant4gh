@@ -26,11 +26,12 @@ echo "Authenticating..."
 tmpfile="tmp_stdout"
 python update_cookie.a > $tmpfile 2>&1
 res=`cat $tmpfile | grep "login succeeded"`
-rm $tmpfile
 
 if [ -n "$res" ]; then
   echo "Setup succeeded!"
 else
+  cat $tmpfile
+  rm $tmpfile
   echo "The username or password you entered is invalid."
   echo "run ./setup.sh again"
 fi
