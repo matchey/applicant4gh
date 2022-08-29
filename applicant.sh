@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# star crond (not automatically activated in wsl)
+sudo service cron start
+
 echo "Enter URL to apply."
 read -p "URL: " url
 tty -s && echo
