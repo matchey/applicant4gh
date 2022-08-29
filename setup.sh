@@ -20,7 +20,7 @@ echo
 echo "Authenticating..."
 
 tmpfile="tmp_stdout"
-PYTHONIOENCODING=utf-8 python update_cookie.py > $tmpfile 2>&1
+PYTHONIOENCODING=utf-8 python update_cookie.a > $tmpfile 2>&1
 res=`cat $tmpfile | grep "login succeeded"`
 
 if [ -n "$res" ]; then
