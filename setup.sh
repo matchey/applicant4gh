@@ -18,8 +18,10 @@ read -p "Twitter Username or email: " user
 read -sp "Twitter Password: " pass
 tty -s && echo
 
-mkdir -p user_data
-echo -e "$id\n$user\n$pass" > user_data/.account
+USER_DATA_DIR=user_data
+rm -r $USER_DATA_DIR
+mkdir $USER_DATA_DIR
+echo -e "$id\n$user\n$pass" > ${USER_DATA_DIR}/.account
 echo
 echo "Authenticating..."
 
@@ -29,6 +31,7 @@ res=`cat $tmpfile | grep "login succeeded"`
 
 if [ -n "$res" ]; then
   echo "Setup succeeded!"
+  rm $tmpfile
 else
   cat $tmpfile
   rm $tmpfile
