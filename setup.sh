@@ -3,10 +3,6 @@
 if [ $# -eq 1 ] && [ $1 = "install" -o $1 = "--install" ];then
   echo ./install_runtime.sh
   ./install_runtime.sh
-  if [ $? -ne 0 ]; then
-    echo failed to install runtime
-    exit 1
-  fi
   echo
 fi
 
@@ -24,10 +20,11 @@ echo
 echo "Authenticating..."
 
 tmpfile="tmp_stdout"
-python update_cookie.a > $tmpfile 2>&1
+PYTHONIOENCODING=utf-8 python update_cookie.py > $tmpfile 2>&1
 res=`cat $tmpfile | grep "login succeeded"`
 
 if [ -n "$res" ]; then
+  rm $tmpfile
   echo "Setup succeeded!"
 else
   cat $tmpfile
