@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# print internal time for debug
+date;date -d "$(curl -s --head http://www.google.co.jp | grep '^Date'  | cut -b 7-)";date
+
 # star crond (not automatically activated in wsl)
 sudo service cron start
 
